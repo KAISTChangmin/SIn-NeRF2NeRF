@@ -2,7 +2,7 @@
 
 ![teaser.png](readme%206e8ba03ecbe04d6f9c9358a593d9a079/teaser.png)
 
-We propose the method SIn-NeRF2NeRF, which performs 3D object editing selectively by disentangling it from the background scene.
+**TL;DR** We propose the method SIn-NeRF2NeRF, which performs 3D object editing selectively by disentangling it from the background scene.
 
 ---
 
@@ -20,7 +20,7 @@ We have implemented the entire process from data preparation/preprocessing (2D i
     For the object scene, we train a DSNeRF using an RGBA image set concatenated from the object mask and object image. During this process, we implement the random background color technique borrowed from the instant-ngp code to ensure effective training of the object scene with a transparent background.
     
 
-We develop a code to edit the object scene based on text prompts by porting the in2n pipeline, especially the Iter- ative Dataset Update (IDU) algorithm, from Nerfacto to DSNeRF. Our novelty lies in the manipulation of object scenes, since we modify the in2n framework to get input of RGBA images, as opposed to the conven- tional RGB images.
+    We develop a code to edit the object scene based on text prompts by porting the in2n pipeline, especially the Iter- ative Dataset Update (IDU) algorithm, from Nerfacto to DSNeRF. Our novelty lies in the manipulation of object scenes, since we modify the in2n framework to get input of RGBA images, as opposed to the conven- tional RGB images.
 
 - **Background Scene Reconstruction**
     
