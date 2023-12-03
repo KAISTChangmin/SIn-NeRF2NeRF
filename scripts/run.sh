@@ -22,9 +22,9 @@ image_guidance_scale=1.5
 # --i_video 4000 \
 # --i_feat 4000 \
 # --N_iters 4001 \
-# --expname $dataset \
-# --datadir ./data/$dataset \
-# --factor $factor \
+# --expname ${dataset} \
+# --datadir ./data/${dataset} \
+# --factor ${factor} \
 # --N_gt 0
 
 ##################################################################################
@@ -41,28 +41,28 @@ export PYTHONPATH=$(pwd)
 # indir=$(pwd)/LaMa_test_images \
 # outdir=$(pwd)/output
 
-# rm -r ../data/$dataset/images_$factor/depth
-# mkdir ../data/$dataset/images_$factor/depth
-# cp ./output/label/*.png ../data/$dataset/images_$factor/depth
+# rm -r ../data/${dataset}/images_${factor}/depth
+# mkdir ../data/${dataset}/images_${factor}/depth
+# cp ./output/label/*.png ../data/${dataset}/images_${factor}/depth
 
 # rm -r LaMa_test_images/*
 # rm -r output/label/*
-# cp ../data/$dataset/images_$factor/*$sfx LaMa_test_images
+# cp ../data/${dataset}/images_${factor}/*${sfx} LaMa_test_images
 # mkdir LaMa_test_images/label
-# cp ../data/$dataset/images_$factor/label/*.png LaMa_test_images/label
+# cp ../data/${dataset}/images_${factor}/label/*.png LaMa_test_images/label
 
 # python bin/predict.py \
 # refine=True \
 # model.path=$(pwd)/big-lama \
 # indir=$(pwd)/LaMa_test_images \
 # outdir=$(pwd)/output \
-# dataset.img_suffix=$sfx
+# dataset.img_suffix=${sfx}
 
-# rm -r ../data/$dataset/images_$factor/lama_images
-# mkdir ../data/$dataset/images_$factor/lama_images
-# mkdir ../data/$dataset/images_$factor/lama_images/label
-# cp ./output/label/*.png ../data/$dataset/images_$factor/lama_images
-# cp ../data/$dataset/images_$factor/label/*.png ../data/$dataset/images_$factor/lama_images/label
+# rm -r ../data/${dataset}/images_${factor}/lama_images
+# mkdir ../data/${dataset}/images_${factor}/lama_images
+# mkdir ../data/${dataset}/images_${factor}/lama_images/label
+# cp ./output/label/*.png ../data/${dataset}/images_${factor}/lama_images
+# cp ../data/${dataset}/images_${factor}/label/*.png ../data/${dataset}/images_${factor}/lama_images/label
 
 ##################################################################################
 
@@ -79,10 +79,10 @@ export PYTHONPATH=$(pwd)
 # --i_weight 4000 \
 # --i_video 4000 \
 # --N_iters 4001 \
-# --expname ${dataset}_scene \
-# --datadir ./data/$dataset \
+# --expname ${dataset}_scene_test \
+# --datadir ./data/${dataset} \
 # --N_gt 0 \
-# --factor $factor
+# --factor ${factor}
 
 ##################################################################################
 
@@ -99,8 +99,8 @@ export PYTHONPATH=$(pwd)
 # --i_feat 4000 \
 # --N_iters 4001 \
 # --expname ${dataset}_object \
-# --datadir ./data/$dataset \
-# --factor $factor \
+# --datadir ./data/${dataset} \
+# --factor ${factor} \
 # --N_gt 0 \
 # --segmented_NeRF
 
@@ -118,15 +118,15 @@ export PYTHONPATH=$(pwd)
 # --i_video 6000 \
 # --i_feat 6000 \
 # --N_iters 6001 \
-# --expname ${dataset}_object_$edit \
+# --expname ${dataset}_object_${edit} \
 # --base_expname ${dataset}_object \
-# --datadir ./data/$dataset \
-# --factor $factor \
+# --datadir ./data/${dataset} \
+# --factor ${factor} \
 # --N_gt 0 \
 # --in2n \
-# --prompt $prompt \
-# --guidance_scale $guidance_scale \
-# --image_guidance_scale $image_guidance_scale \
+# --prompt "${prompt}" \
+# --guidance_scale ${guidance_scale} \
+# --image_guidance_scale ${image_guidance_scale} \
 # --lpips \
 # --lpips_lambda 0.1 \
 # --segmented_NeRF
@@ -140,11 +140,11 @@ export PYTHONPATH=$(pwd)
 # python DS_NeRF/merge_nerf.py \
 # --config DS_NeRF/configs/config.txt \
 # --render_factor 1 \
-# --expname ${dataset}_merged_$edit \
-# --object_expname ${dataset}_object_$edit \
+# --expname ${dataset}_merged_${edit} \
+# --object_expname ${dataset}_object_${edit} \
 # --scene_expname ${dataset}_scene \
-# --datadir ./data/$dataset \
-# --factor $factor \
-# --scale $scale
+# --datadir ./data/${dataset} \
+# --factor ${factor} \
+# --scale ${scale}
 
 ##################################################################################
