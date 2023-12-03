@@ -169,6 +169,7 @@ def _load_data(basedir, factor=None, width=None, height=None, load_imgs=True, pr
     imgs = np.stack(imgs, -1)
 
     masks = []
+    original_masks = []
     mask_indices = []
     for i, f in enumerate(mskfiles):
         try:
@@ -182,7 +183,9 @@ def _load_data(basedir, factor=None, width=None, height=None, load_imgs=True, pr
                     msk, (imgs.shape[1], imgs.shape[0]), interpolation=cv2.INTER_NEAREST)
                 print(msk.shape)
             # todo comment this or change the dilation iterations
-            # masks[i] = cv2.dilate(msk, np.ones((5, 5), np.uint8), iterations=5)
+            original_masks.append(msk)
+            if not segmented_NeRF:
+                msk = cv2.dilate(msk, np.ones((5, 5), np.uint8), iterations=5)
             masks.append(msk)
             mask_indices.append(i)
             # comment this if statement in case you need all of the inpainted rgbs  todo chang != 0 to != len(mskfiles) - 30
@@ -191,11 +194,7 @@ def _load_data(basedir, factor=None, width=None, height=None, load_imgs=True, pr
         except:
             masks.append(-np.ones((imgs.shape[0], imgs.shape[1])))
 
-    object_points = _load_object_points(basedir, masks, factor=factor, bd_factor=.75)
-
-    if not segmented_NeRF:
-        for i, msk in enumerate(masks):
-            masks[i] = cv2.dilate(msk, np.ones((5, 5), np.uint8), iterations=5)
+    object_points = _load_object_points(basedir, original_masks, factor=factor, bd_factor=.75)
 
     inpainted_depths = []
     for f in depthfiles:
